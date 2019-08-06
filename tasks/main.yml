@@ -40,7 +40,6 @@
 
 - name: Run Configuration For Oracle
   include_tasks: configuration.yml
-  static: yes
 
 #- name: Run Configuration For Oracle
 #  include: configuration.yml
