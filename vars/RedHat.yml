@@ -3,6 +3,7 @@
 __oracle_client_dependencies:
   - binutils
   - compat-libcap1
+  - compat-libstdc++-33
   - gcc
   - gcc-c++
   - glibc

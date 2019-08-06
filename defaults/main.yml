@@ -7,12 +7,13 @@ oracle_client_install: True
 oracle_client_zip: linuxamd64_12102_client.zip
 oracle_client_tmp_install_storage: /tmp/oracleclient
 
+oracle_client_version: 18.0.0.0.0
+oracle_client_major_version: "{{ oracle_client_version.split('.')[0:3] | join('.') }}"
+
 # This can force the variable to a specific hostname if this is being
 # installed on a machine with multiple hostnames. Otherwise the installer
 # takes for first hostname found.
 oracle_client_hostname: ""
-
-oracle_client_inventory_location: /u01/app/oraInventory
 
 # Map of Code to Language Component to be installed
 #
@@ -45,9 +46,12 @@ oracle_client_inventory_location: /u01/app/oraInventory
 oracle_client_selected_languages:
   - en
 
-oracle_client_oracle_app_base: /u01/app
+oracle_client_drawer: /u01
+oracle_client_oracle_app_base: "{{ oracle_client_drawer }}/app"
 oracle_client_oracle_base: "{{ oracle_client_oracle_app_base }}/oracle"
 oracle_client_oracle_home: "{{ oracle_client_oracle_base}}/product/12.1.0/client_1"
+oracle_client_inventory_location: "{{ oracle_client_oracle_app_base }}/oraInventory"
+oracle_client_user_home: "{{ oracle_client_drawer }}/home"
 
 # Oracle Client Install Type - Must Be Exactly One of These
 #  - InstantClient
@@ -86,8 +90,6 @@ oracle_client_custom_install_components:
 
 oracle_client_scheduler_agent_hostname: ""
 oracle_client_scheduler_agent_port: 1500
-
-oracle_client_version: 12.1.0.2.0
 
 oracle_client_nls_lang: AMERICAN_AMERICA.WE8ISO8859P1
 

@@ -27,6 +27,7 @@
     name: "{{ __oracle_client_user }}"
     uid: "{{ __oracle_client_user_id }}"
     group: "{{ __oracle_client_group }}"
+    home: "{{ oracle_client_user_home }}"
 
 - name: Install Oracle Client
   include: install.yml
