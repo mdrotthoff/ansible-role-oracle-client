@@ -4,6 +4,9 @@
 export ORACLE_BASE={{ oracle_client_oracle_base }}
 export ORACLE_HOME={{ oracle_client_oracle_home }}
 export NLS_LANG={{ oracle_client_nls_lang }}
+{% if oracle_client_tns_admin is defined %}
+export TNS_ADMIN={{oracle_client_tns_admin}}
+{% endif %}
 
 {# If Procobol is being installed apply this variable #}
 PROCOB=$ORACLE_HOME/bin/procob
