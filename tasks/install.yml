@@ -108,17 +108,19 @@
   when: not __oracle_client_installed
 
 - name: Install Oracle Client
-  become: yes
-  become_user: "{{ __oracle_client_user }}"
-  command: "{{ oracle_client_tmp_install_storage }}/client/runInstaller -silent -noconfig -waitForCompletion -responseFile {{ oracle_client_tmp_install_storage }}/client.rsp"
-#  async: 120
-#  poll: 0
-  register: __oracle_client_installer_result
-  when: not __oracle_client_installed
-
-- name: Display the result of the Oracle client install
-  debug:
-    var: __oracle_client_installer_result
+  block:
+    - name: Run the installer
+      become: yes
+      become_user: "{{ __oracle_client_user }}"
+      command: "{{ oracle_client_tmp_install_storage }}/client/runInstaller -silent -noconfig -waitForCompletion -responseFile {{ oracle_client_tmp_install_storage }}/client.rsp"
+#      async: 120
+#      poll: 0
+      register: __oracle_client_installer_result
+      when: not __oracle_client_installed
+  always:
+    - name: Display the result of the Oracle client install
+      debug:
+        var: __oracle_client_installer_result
 
 #- name: Install Oracle Client
 #  become: yes
