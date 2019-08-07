@@ -49,7 +49,7 @@ oracle_client_selected_languages:
 oracle_client_drawer: /u01
 oracle_client_oracle_app_base: "{{ oracle_client_drawer }}/app"
 oracle_client_oracle_base: "{{ oracle_client_oracle_app_base }}/oracle"
-oracle_client_oracle_home: "{{ oracle_client_oracle_base}}/product/12.1.0/client_1"
+oracle_client_oracle_home: "{{ oracle_client_oracle_base}}/product/{{ oracle_client_major_version }}/client_1"
 oracle_client_inventory_location: "{{ oracle_client_oracle_app_base }}/oraInventory"
 oracle_client_user_home: "{{ oracle_client_drawer }}/home"
 #oracle_client_tns_admin: "{{ oracle_client_drawer }}/network"
