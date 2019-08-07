@@ -118,6 +118,7 @@ oracle_client_has_primary_db: True
 
 oracle_client_set_oratab: True
 oracle_client_set_tnsnames: True
+oracle_client_set_tns_admin: True
 oracle_client_set_environmental_variables: True
 oracle_client_environment_shell_name: oracle-client.sh
 

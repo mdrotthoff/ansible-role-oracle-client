@@ -4,7 +4,7 @@
 export ORACLE_BASE={{ oracle_client_oracle_base }}
 export ORACLE_HOME={{ oracle_client_oracle_home }}
 export NLS_LANG={{ oracle_client_nls_lang }}
-{% if oracle_client_tns_admin is defined %}
+{% if oracle_client_tns_admin is defined and oracle_client_set_tns_admin %}
 export TNS_ADMIN={{oracle_client_tns_admin}}
 {% endif %}
 

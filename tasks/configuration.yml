@@ -20,7 +20,7 @@
     state: directory
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_group }}"
-  when: oracle_client_set_tnsnames or oracle_client_tns_admin is defined 
+  when: oracle_client_tns_admin is defined 
 
 - name: Implement tnsnames.ora
   template:
