@@ -11,7 +11,7 @@
 
 - name: Make sure Network Admin folder exists
   file:
-    path: "{{ oracle_client_tns_admin | default( oracle_client_oracle_home '/network/admin' }})"
+    path: "{{ oracle_client_tns_admin | default(oracle_client_oracle_home '/network/admin') }}"
     state: directory
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_group }}"
