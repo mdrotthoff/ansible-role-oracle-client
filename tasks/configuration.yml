@@ -20,7 +20,7 @@
 - name: Implement tnsnames.ora
   template:
     src: tnsnames.ora.j2
-    path: "{{ oracle_client_tns_admin | default(oracle_client_oracle_home + '/network/admin') }}"
+    path: "{{ oracle_client_tns_admin | default(oracle_client_oracle_home + '/network/admin') }}/tnsnames.ora"
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_group }}"
     mode: 0644
