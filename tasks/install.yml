@@ -116,6 +116,10 @@
   register: __oracle_client_installer_result
   when: not __oracle_client_installed
 
+- name: Display the result of the Oracle client install
+  debug:
+    var: __oracle_client_installer_result
+
 #- name: Install Oracle Client
 #  become: yes
 #  become_user: "{{ __oracle_client_user }}"
