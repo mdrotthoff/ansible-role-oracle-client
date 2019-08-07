@@ -9,18 +9,23 @@
     mode: 0644
   when: oracle_client_set_oratab
 
+- name: Determine the location of the tnsnames.ora file
+  set_fact:
+    oracle_client_tns_admin: "{{ oracle_client_oracle_home }}/network/admin }}"
+  when: oracle_client_tns_admin is not defined
+
 - name: Make sure Network Admin folder exists
   file:
-    path: "{{ oracle_client_tns_admin | default(oracle_client_oracle_home + '/network/admin') }}"
+    path: "{{ oracle_client_tns_admin }}"
     state: directory
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_group }}"
-  when: oracle_client_set_tnsnames
+  when: oracle_client_set_tnsnames or oracle_client_tns_admin is defined 
 
 - name: Implement tnsnames.ora
   template:
     src: tnsnames.ora.j2
-    dest: "{{ oracle_client_tns_admin | default(oracle_client_oracle_home + '/network/admin') }}/tnsnames.ora"
+    dest: "{{ oracle_client_tns_admin }}/tnsnames.ora"
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_group }}"
     mode: 0644
