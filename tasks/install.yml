@@ -147,12 +147,12 @@
     - not __oracle_client_installed
     - __oracle_client_root_shell_path.stat.exists
 
-- name: Create the directory pointed to by TNS_ADMIN
-  file:
-    path: "{{ oracle_client_tns_admin }}"
-    state: directory
-    owner: "{{ __oracle_client_user }}"
-    group: "{{ __oracle_client_group }}"
+#- name: Create the directory pointed to by TNS_ADMIN
+#  file:
+#    path: "{{ oracle_client_tns_admin }}"
+#    state: directory
+#    owner: "{{ __oracle_client_user }}"
+#    group: "{{ __oracle_client_group }}"
 
 - name: Turn off Swap File
   command: /sbin/swapoff /extraswap
