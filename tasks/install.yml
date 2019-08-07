@@ -110,16 +110,25 @@
 - name: Install Oracle Client
   become: yes
   become_user: "{{ __oracle_client_user }}"
-  command: "{{ oracle_client_tmp_install_storage }}/client/runInstaller -silent -noconfig -responseFile {{ oracle_client_tmp_install_storage }}/client.rsp"
-  async: 120
-  poll: 0
+  command: "{{ oracle_client_tmp_install_storage }}/client/runInstaller -silent -noconfig -responseFile -waitForCompletion {{ oracle_client_tmp_install_storage }}/client.rsp"
+#  async: 120
+#  poll: 0
   register: __oracle_client_installer_result
   when: not __oracle_client_installed
 
-- name: Wait For Install To Complete
-  pause:
-    seconds: 120
-  when: not __oracle_client_installed
+#- name: Install Oracle Client
+#  become: yes
+#  become_user: "{{ __oracle_client_user }}"
+#  command: "{{ oracle_client_tmp_install_storage }}/client/runInstaller -silent -noconfig -responseFile -waitForCompletion {{ oracle_client_tmp_install_storage }}/client.rsp"
+#  async: 120
+#  poll: 0
+#  register: __oracle_client_installer_result
+#  when: not __oracle_client_installed
+
+#- name: Wait For Install To Complete
+#  pause:
+#    seconds: 120
+#  when: not __oracle_client_installed
 
 - name: Check if OraInventoryRoot Script needs to be run
   stat:
