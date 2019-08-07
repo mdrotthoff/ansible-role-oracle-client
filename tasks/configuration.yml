@@ -12,7 +12,9 @@
 - name: Determine the location of the tnsnames.ora file
   set_fact:
     oracle_client_tns_admin: "{{ oracle_client_oracle_home }}/network/admin }}"
-  when: oracle_client_tns_admin is not defined
+  when: 
+    - oracle_client_tns_admin is not defined
+    - (oracle_client_set_tnsnames or oracle_client_set_tns_admin)
 
 - name: Make sure Network Admin folder exists
   file:
