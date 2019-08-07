@@ -110,7 +110,7 @@
 - name: Install Oracle Client
   become: yes
   become_user: "{{ __oracle_client_user }}"
-  command: "{{ oracle_client_tmp_install_storage }}/client/runInstaller -silent -noconfig -responseFile -waitForCompletion {{ oracle_client_tmp_install_storage }}/client.rsp"
+  command: "{{ oracle_client_tmp_install_storage }}/client/runInstaller -silent -noconfig -waitForCompletion -responseFile {{ oracle_client_tmp_install_storage }}/client.rsp"
 #  async: 120
 #  poll: 0
   register: __oracle_client_installer_result
