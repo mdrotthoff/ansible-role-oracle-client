@@ -15,6 +15,11 @@
     state: installed
   with_items: "{{ __oracle_client_dependencies | default([]) }}"
 
+- name: Create the Oracle drawer directory if it does not exist
+  file:
+    path: "{{ oracle_client_drawer }}"
+    state: directory
+
 - name: Creating Oracle Client Install Group
   group:
     state: present
@@ -27,7 +32,7 @@
     name: "{{ __oracle_client_user }}"
     uid: "{{ __oracle_client_user_id }}"
     group: "{{ __oracle_client_group }}"
-#    home: "{{ oracle_client_user_home }}"
+    home: "{{ oracle_client_user_home }}"
 
 - name: Install Oracle Client
   include_tasks: install.yml
