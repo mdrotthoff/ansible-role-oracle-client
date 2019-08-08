@@ -48,9 +48,9 @@ oracle_client_selected_languages:
 
 oracle_client_drawer: /u01
 oracle_client_oracle_app_base: "{{ oracle_client_drawer }}/app"
-oracle_client_oracle_base: "{{ oracle_client_oracle_app_base }}/oracle"
-oracle_client_oracle_home: "{{ oracle_client_oracle_base}}/product/{{ oracle_client_major_version }}/client_1"
-oracle_client_inventory_location: "{{ oracle_client_oracle_app_base }}/oraInventory"
+oracle_client_oracle_base: "{{ oracle_client_drawer }}/oracle"
+oracle_client_oracle_home: "{{ oracle_client_oracle_base }}/product/{{ oracle_client_major_version }}/client_1"
+oracle_client_inventory_location: "{{ oracle_client_drawer }}/oraInventory"
 oracle_client_user_home: "{{ oracle_client_drawer }}/home"
 #oracle_client_tns_admin: "{{ oracle_client_drawer }}/network"
 
@@ -92,7 +92,7 @@ oracle_client_custom_install_components:
 oracle_client_scheduler_agent_hostname: ""
 oracle_client_scheduler_agent_port: 1500
 
-oracle_client_nls_lang: AMERICAN_AMERICA.WE8ISO8859P1
+oracle_client_nls_lang: AMERICAN_AMERICA.UTF8
 
 #
 # Oracle Databases

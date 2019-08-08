@@ -126,6 +126,7 @@
     - name: Display the result of the Oracle client install
       debug:
         var: __oracle_client_installer_result
+      when:  __oracle_client_installer_result.rc > 0
 
 #- name: Install Oracle Client
 #  become: yes
