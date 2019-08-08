@@ -128,20 +128,6 @@
         var: __oracle_client_installer_result
       when:  __oracle_client_installer_result.rc > 0
 
-#- name: Install Oracle Client
-#  become: yes
-#  become_user: "{{ __oracle_client_user }}"
-#  command: "{{ oracle_client_tmp_install_storage }}/client/runInstaller -silent -noconfig -responseFile -waitForCompletion {{ oracle_client_tmp_install_storage }}/client.rsp"
-#  async: 120
-#  poll: 0
-#  register: __oracle_client_installer_result
-#  when: not __oracle_client_installed
-
-#- name: Wait For Install To Complete
-#  pause:
-#    seconds: 120
-#  when: not __oracle_client_installed
-
 - name: Check if OraInventoryRoot Script needs to be run
   stat:
     path: "{{ oracle_client_inventory_location }}/orainstRoot.sh"
@@ -167,13 +153,6 @@
   when:
     - not __oracle_client_installed
     - __oracle_client_root_shell_path.stat.exists
-
-#- name: Create the directory pointed to by TNS_ADMIN
-#  file:
-#    path: "{{ oracle_client_tns_admin }}"
-#    state: directory
-#    owner: "{{ __oracle_client_user }}"
-#    group: "{{ __oracle_client_group }}"
 
 - name: Turn off Swap File
   command: /sbin/swapoff /extraswap

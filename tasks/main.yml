@@ -38,14 +38,5 @@
   include_tasks: install.yml
   when: oracle_client_install
 
-#- name: Install Oracle Client
-#  include: install.yml
-#  static: no
-#  when: oracle_client_install
-
 - name: Run Configuration For Oracle
   include_tasks: configuration.yml
-
-#- name: Run Configuration For Oracle
-#  include: configuration.yml
-#  static: yes
