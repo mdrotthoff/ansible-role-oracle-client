@@ -126,7 +126,9 @@
     - name: Display the result of the Oracle client install
       debug:
         var: __oracle_client_installer_result
-      when:  __oracle_client_installer_result.rc > 0
+      when:
+       - __oracle_client_installer_result is defined
+       - __oracle_client_installer_result.rc > 0
 
 - name: Check if OraInventoryRoot Script needs to be run
   stat:
