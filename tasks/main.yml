@@ -20,11 +20,6 @@
     path: "{{ oracle_client_oracle_app_base }}"
     state: directory
 
-#- name: Create the Oracle drawer directory if it does not exist
-#  file:
-#    path: "{{ oracle_client_drawer }}"
-#    state: directory
-
 - name: Creating Oracle Client Install Group
   group:
     state: present

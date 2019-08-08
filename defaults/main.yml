@@ -46,8 +46,6 @@ oracle_client_hostname: ""
 oracle_client_selected_languages:
   - en
 
-#oracle_client_drawer: /u01
-#oracle_client_oracle_app_base: "{{ oracle_client_drawer }}/app"
 oracle_client_oracle_app_base: "/u01"
 oracle_client_oracle_base: "{{ oracle_client_oracle_app_base }}/oracle"
 oracle_client_oracle_home: "{{ oracle_client_oracle_base }}/product/{{ oracle_client_major_version }}/client_1"
@@ -101,7 +99,7 @@ oracle_client_nls_lang: AMERICAN_AMERICA.UTF8
 
 # If oracle_client_has_primary_db values will be taken from the first
 # entry in oracle_client_databases
-oracle_client_has_primary_db: True
+oracle_client_has_primary_db: False
 
 # The default values to install a database
 # Without this you wont have much fun but you will still
@@ -117,9 +115,9 @@ oracle_client_has_primary_db: True
 
 ##### Configuration Defaults
 
-oracle_client_set_oratab: True
-oracle_client_set_tnsnames: True
-oracle_client_set_tns_admin: False
+oracle_client_set_oratab: False
+oracle_client_set_tnsnames: False
+oracle_client_set_tns_admin: True
 oracle_client_set_environmental_variables: True
 oracle_client_environment_shell_name: oracle-client.sh
 

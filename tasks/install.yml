@@ -1,12 +1,5 @@
 ---
 
-#- name: Ensure the Oracle drawer directory has the correct ownership
-#  file:
-#    path: "{{ oracle_client_drawer }}"
-#    state: directory
-#    owner: "{{ __oracle_client_user }}"
-#    group: "{{ __oracle_client_group }}"
-
 - name: Check whether Oracle Home Exists
   stat:
     path: "{{ oracle_client_oracle_home }}"
@@ -74,24 +67,6 @@
     - ansible_swaptotal_mb is defined
     - ansible_swaptotal_mb < 1
     - not __oracle_client_installed
-
-#- name: Download compat-libstdc++ libs if EL
-#  get_url:
-#    url: http://mirror.centos.org/centos/7/os/x86_64/Packages/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm
-#    dest: "{{ oracle_client_tmp_install_storage }}/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm"
-#    owner: "{{ __oracle_client_user }}"
-#    group: "{{ __oracle_client_group }}"
-#  when:
-#    - ansible_os_family == "RedHat"
-#    - not __oracle_client_installed
-
-#- name: Install compat-libstdc++ libs if EL
-#  yum:
-#    name: "{{ oracle_client_tmp_install_storage }}/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm"
-#    state: present
-#  when:
-#    - ansible_os_family == "RedHat"
-#    - not __oracle_client_installed
 
 - name: Unpack Oracle Client At New Location
   unarchive:
