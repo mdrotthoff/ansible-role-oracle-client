@@ -1,11 +1,11 @@
 ---
 
-- name: Ensure the Oracle drawer directory has the correct ownership
-  file:
-    path: "{{ oracle_client_drawer }}"
-    state: directory
-    owner: "{{ __oracle_client_user }}"
-    group: "{{ __oracle_client_group }}"
+#- name: Ensure the Oracle drawer directory has the correct ownership
+#  file:
+#    path: "{{ oracle_client_drawer }}"
+#    state: directory
+#    owner: "{{ __oracle_client_user }}"
+#    group: "{{ __oracle_client_group }}"
 
 - name: Check whether Oracle Home Exists
   stat:

@@ -46,13 +46,14 @@ oracle_client_hostname: ""
 oracle_client_selected_languages:
   - en
 
-oracle_client_drawer: /u01
-oracle_client_oracle_app_base: "{{ oracle_client_drawer }}/app"
-oracle_client_oracle_base: "{{ oracle_client_drawer }}/oracle"
+#oracle_client_drawer: /u01
+#oracle_client_oracle_app_base: "{{ oracle_client_drawer }}/app"
+oracle_client_oracle_app_base: "/u01"
+oracle_client_oracle_base: "{{ oracle_client_oracle_app_base }}/oracle"
 oracle_client_oracle_home: "{{ oracle_client_oracle_base }}/product/{{ oracle_client_major_version }}/client_1"
-oracle_client_inventory_location: "{{ oracle_client_drawer }}/oraInventory"
-oracle_client_user_home: "{{ oracle_client_drawer }}/home"
-#oracle_client_tns_admin: "{{ oracle_client_drawer }}/network"
+oracle_client_inventory_location: "{{ oracle_client_app_base }}/oraInventory"
+oracle_client_user_home: "{{ oracle_client_app_base }}/home"
+oracle_client_tns_admin: "{{ oracle_client_drawer }}/network"
 
 # Oracle Client Install Type - Must Be Exactly One of These
 #  - InstantClient

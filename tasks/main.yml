@@ -15,10 +15,15 @@
     state: installed
   with_items: "{{ __oracle_client_dependencies | default([]) }}"
 
-- name: Create the Oracle drawer directory if it does not exist
+- name: Create the Oracle app base directory if it does not exist
   file:
-    path: "{{ oracle_client_drawer }}"
+    path: "{{ oracle_client_app_base }}"
     state: directory
+
+#- name: Create the Oracle drawer directory if it does not exist
+#  file:
+#    path: "{{ oracle_client_drawer }}"
+#    state: directory
 
 - name: Creating Oracle Client Install Group
   group:
