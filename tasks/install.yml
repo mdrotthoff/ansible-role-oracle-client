@@ -113,10 +113,15 @@
       become: yes
       become_user: "{{ __oracle_client_user }}"
       command: "{{ oracle_client_tmp_install_storage }}/client/runInstaller -silent -noconfig -waitForCompletion -responseFile {{ oracle_client_tmp_install_storage }}/client.rsp"
-#      async: 120
-#      poll: 0
       register: __oracle_client_installer_result
       when: not __oracle_client_installed
+
+  rescue:
+    - name: Fail if the exit code is not an acceptable value
+      fail:
+        msg: "Oracle installed exited with code {{ __oracle_client_installer_result.rc }}"
+      when:  __oracle_client_installer_result.rc not in [0, 6]
+
   always:
     - name: Display the result of the Oracle client install
       debug:
