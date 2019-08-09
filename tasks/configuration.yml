@@ -21,7 +21,7 @@
     path: "{{ oracle_client_tns_admin }}"
     state: directory
     owner: "{{ __oracle_client_user }}"
-    group: "{{ __oracle_client_group }}"
+    group: "{{ __oracle_client_dba_group }}"
   when: oracle_client_tns_admin is defined 
 
 - name: Implement tnsnames.ora
