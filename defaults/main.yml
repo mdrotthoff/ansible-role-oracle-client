@@ -4,7 +4,7 @@
 # Oracle Client Install Configuration
 #
 oracle_client_install: True
-oracle_client_zip: linuxamd64_12102_client.zip
+oracle_client_zip: LINUX.X64_180000_client.zip
 oracle_client_tmp_install_storage: /tmp/oracleclient
 
 oracle_client_version: 18.0.0.0.0
