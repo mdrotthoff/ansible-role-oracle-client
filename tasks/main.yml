@@ -10,10 +10,9 @@
     - "default.yml"
 
 - name: Install Dependencies
-  package:
-    name: "{{ item }}"
+  yum:
+    name: "{{ __oracle_client_dependencies | default([]) }}"
     state: installed
-  with_items: "{{ __oracle_client_dependencies | default([]) }}"
 
 - name: Create the Oracle app base directory if it does not exist
   file:
