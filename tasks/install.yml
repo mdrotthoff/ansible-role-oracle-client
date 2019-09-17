@@ -74,7 +74,9 @@
     dest: "{{ oracle_client_tmp_install_storage }}"
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_group }}"
-  when: not __oracle_client_installed
+  when:
+    - not __oracle_client_installed
+    - not ansible_check_mode
 
 - name: Transfer the response file
   template:
@@ -89,7 +91,9 @@
       become_user: "{{ __oracle_client_user }}"
       command: "{{ oracle_client_tmp_install_storage }}/client/runInstaller -silent -noconfig -waitForCompletion -responseFile {{ oracle_client_tmp_install_storage }}/client.rsp"
       register: __oracle_client_installer_result
-      when: not __oracle_client_installed
+      when:
+        - not __oracle_client_installed
+        - not ansible_check_mode
 
   rescue:
     - name: Fail if the exit code is not an acceptable value
