@@ -37,6 +37,7 @@
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_group }}"
   when: not __oracle_client_installed
+  ignore_errors: "{{ ansible_check_mode }}"
 
 #- name: Generate Required Swap File For Install
 #  command: /bin/dd if=/dev/zero of=/extraswap bs=1M count=200
