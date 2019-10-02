@@ -124,8 +124,8 @@ oracle_client_environment_shell_name: oracle-client.sh
 
 # These are fairly constant values
 __oracle_client_user: oracle
-__oracle_client_user_id: 4006
+#__oracle_client_user_id: 4006
 __oracle_client_group: oinstall
-__oracle_client_group_id: 103
+#__oracle_client_group_id: 103
 __oracle_client_dba_group: dba
-__oracle_client_dba_group_id: 105
+#__oracle_client_dba_group_id: 105

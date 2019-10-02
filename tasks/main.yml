@@ -23,19 +23,19 @@
   group:
     state: present
     name: "{{ __oracle_client_group }}"
-    gid: "{{ __oracle_client_group_id }}"
+    gid: "{{ __oracle_client_group_id | default(omit) }}"
 
 - name: Creating Oracle Client DBA Group
   group:
     state: present
     name: "{{ __oracle_client_dba_group }}"
-    gid: "{{ __oracle_client_dba_group_id }}"
+    gid: "{{ __oracle_client_dba_group_id | default(omit) }}"
 
 - name: Creating Oracle User
   user:
     state: present
     name: "{{ __oracle_client_user }}"
-    uid: "{{ __oracle_client_user_id }}"
+    uid: "{{ __oracle_client_user_id | default(omit) }}"
     group: "{{ __oracle_client_group }}"
     groups: "{{ __oracle_client_dba_group }}"
     home: "{{ oracle_client_user_home }}"
