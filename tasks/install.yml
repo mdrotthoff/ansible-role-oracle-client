@@ -20,7 +20,8 @@
     state: directory
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_group }}"
-  when: not __oracle_client_installed
+  when:
+    - not __oracle_client_installed
 
 - name: Create Base Directory
   file:
@@ -28,7 +29,8 @@
     state: directory
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_group }}"
-  when: not __oracle_client_installed
+  when:
+    - not __oracle_client_installed
 
 - name: Create Storage Directory
   file:
@@ -36,38 +38,9 @@
     state: directory
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_group }}"
-  when: not __oracle_client_installed
+  when:
+    - not __oracle_client_installed
   ignore_errors: "{{ ansible_check_mode }}"
-
-#- name: Generate Required Swap File For Install
-#  command: /bin/dd if=/dev/zero of=/extraswap bs=1M count=200
-#  when:
-#    - ansible_swaptotal_mb is defined
-#    - ansible_swaptotal_mb < 1
-#    - not __oracle_client_installed
-
-#- name: Make swap For Install
-#  command: /sbin/mkswap /extraswap
-#  when:
-#    - ansible_swaptotal_mb is defined
-#    - ansible_swaptotal_mb < 1
-#    - not __oracle_client_installed
-
-#- name: Generate Swap File Permissions
-#  file:
-#    name: "/extraswap"
-#    mode: 0600
-#  when:
-#    - ansible_swaptotal_mb is defined
-#    - ansible_swaptotal_mb < 1
-#    - not __oracle_client_installed
-
-#- name: Turn Swap On
-#  command: /sbin/swapon /extraswap
-#  when:
-#    - ansible_swaptotal_mb is defined
-#    - ansible_swaptotal_mb < 1
-#    - not __oracle_client_installed
 
 - name: Unpack Oracle Client At New Location
   unarchive:
@@ -76,6 +49,7 @@
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_group }}"
   when:
+    - not ansible_check_mode
     - not __oracle_client_installed
   ignore_errors: "{{ ansible_check_mode }}"
 
@@ -83,7 +57,9 @@
   template:
     dest: "{{ oracle_client_tmp_install_storage}}/client.rsp"
     src: client.rsp.j2
-  when: not __oracle_client_installed
+  when:
+    - not ansible_check_mode
+    - not __oracle_client_installed
 
 - name: Install Oracle Client
   block:
@@ -93,6 +69,7 @@
       command: "{{ oracle_client_tmp_install_storage }}/client/runInstaller -silent -noconfig -waitForCompletion -responseFile {{ oracle_client_tmp_install_storage }}/client.rsp"
       register: __oracle_client_installer_result
       when:
+        - not ansible_check_mode
         - not __oracle_client_installed
       ignore_errors: "{{ ansible_check_mode }}"
 
@@ -115,7 +92,8 @@
   stat:
     path: "{{ oracle_client_inventory_location }}/orainstRoot.sh"
   register: __oracle_client_orainst_path
-  when: not __oracle_client_installed
+  when:
+    - not __oracle_client_installed
 
 - name: Run root orainst scripts
   command: "{{ oracle_client_inventory_location }}/orainstRoot.sh"
@@ -128,7 +106,8 @@
   stat:
     path: "{{ oracle_client_oracle_home }}/root.sh"
   register: __oracle_client_root_shell_path
-  when: not __oracle_client_installed
+  when:
+    - not __oracle_client_installed
 
 - name: Run root configuration
   command: "{{ oracle_client_oracle_home }}/root.sh"
@@ -137,24 +116,9 @@
     - not __oracle_client_installed
     - __oracle_client_root_shell_path.stat.exists
 
-#- name: Turn off Swap File
-#  command: /sbin/swapoff /extraswap
-#  when:
-#    - ansible_swaptotal_mb is defined
-#    - ansible_swaptotal_mb < 1
-#    - not __oracle_client_installed
-
-#- name: Generate Required Swap File For Install
-#  file:
-#    name: /extraswap
-#    state: absent
-#  when:
-#    - ansible_swaptotal_mb is defined
-#    - ansible_swaptotal_mb < 1
-#    - not __oracle_client_installed
-
 - name: Remove Temporary Storage Directory
   file:
     path: "{{ oracle_client_tmp_install_storage }}"
     state: directory
-  when: not __oracle_client_installed
+  when:
+    - not __oracle_client_installed
