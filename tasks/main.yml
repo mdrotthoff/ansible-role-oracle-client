@@ -3,6 +3,11 @@
 # $Date$
 # $Source$
 
+
+###################################
+# Oracle client installation role #
+###################################
+
 - name: Dump the variables / facts known by Ansible for the Oracle Client role
   include_role:
     name: mdrotthoff.ansible-debug
