@@ -58,7 +58,7 @@ oracle_client_tns_admin: "{{ oracle_client_drawer }}/network"
 #  - Administrator
 #  - Runtime
 #  - Custom
-oracle_client_install_type: InstantClient
+oracle_client_install_type: Administrator
 
 # sqlj              --> "Oracle SQLJ"
 # rdbms.util        --> "Oracle Database Utilities"

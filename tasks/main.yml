@@ -58,3 +58,7 @@
 
 - name: Run Configuration For Oracle
   include_tasks: configuration.yml
+
+- name: Dump the variables / facts known by Ansible for the Oracle Client role at the end
+  include_role:
+    name: mdrotthoff.ansible-debug
