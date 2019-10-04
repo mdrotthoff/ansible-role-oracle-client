@@ -12,6 +12,10 @@
   include_role:
     name: mdrotthoff.ansible-debug
 
+- name: Expose the Oracle Home value
+  set_fact:
+    oracle_client_oracle_home: "{{ oracle_client_oracle_home }}"
+
 - name: Include Operating System Variables
   include_vars: "{{ item }}"
   with_first_found:
