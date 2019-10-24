@@ -58,7 +58,8 @@
 
 - name: Install Oracle Client
   include_tasks: install.yml
-  when: oracle_client_install
+  when:
+    - oracle_client_install
 
 - name: Run Configuration For Oracle
   include_tasks: configuration.yml

@@ -7,7 +7,8 @@
     owner: root
     group: root
     mode: 0644
-  when: oracle_client_set_oratab
+  when:
+    - oracle_client_set_oratab
 
 - name: Determine the location of the tnsnames.ora file
   set_fact:
@@ -22,7 +23,8 @@
     state: directory
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_dba_group }}"
-  when: oracle_client_tns_admin is defined 
+  when:
+    - oracle_client_tns_admin is defined 
 
 - name: Implement tnsnames.ora
   template:
@@ -31,7 +33,8 @@
     owner: "{{ __oracle_client_user }}"
     group: "{{ __oracle_client_group }}"
     mode: 0644
-  when: oracle_client_set_tnsnames
+  when:
+    - oracle_client_set_tnsnames
 
 - name: Set Oracle Client Environmental Variables
   template:
@@ -40,7 +43,8 @@
     owner: root
     group: root
     mode: 0644
-  when: oracle_client_set_environmental_variables
+  when:
+    - oracle_client_set_environmental_variables
 
 - name: Check If Precompiler Installed
   stat:
@@ -50,11 +54,15 @@
 - name: Check For Location of GCC Libraries for Precompiler
   command: find /usr/lib/gcc -wholename "*/include"
   changed_when: false
+  check_mode: false
   register: __oracle_client_gcc_libraries
-  when: __oracle_client_precompiler.stat.exists
+  when:
+    - __oracle_client_precompiler.stat.exists
 
 - name: Apply PreCompiler C Template
   template:
     src: pcscfg.cfg.j2
     dest: "{{ oracle_client_oracle_home }}/precomp/admin/pcscfg.cfg"
-  when: __oracle_client_precompiler.stat.exists
+  when:
+    - __oracle_client_precompiler.stat.exists
+
